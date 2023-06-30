@@ -1,3 +1,9 @@
+## 0.4.0 (2023-06-30)
+
+### Feat
+
+- test a bump --check-consistency
+
 ## 0.3.0 (2023-06-30)
 
 ### Feat
