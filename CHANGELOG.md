@@ -1,3 +1,9 @@
+## 0.6.0 (2023-07-01)
+
+### Feat
+
+- added print fixed changelog
+
 ## 0.5.0 (2023-07-01)
 
 ### Feat
