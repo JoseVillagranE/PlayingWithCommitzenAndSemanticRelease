@@ -1,3 +1,9 @@
+## 0.7.0-rc0 (2023-07-01)
+
+### Feat
+
+- add test pre-release print
+
 ## 0.6.0 (2023-07-01)
 
 ### Feat
