@@ -1,3 +1,15 @@
+## 0.5.0 (2023-07-01)
+
+### Feat
+
+- add incremental print
+- reformulate package
+
+### Fix
+
+- edited changelog
+- version in version and setup file
+
 ## 0.4.0 (2023-06-30)
 
 ### Feat
