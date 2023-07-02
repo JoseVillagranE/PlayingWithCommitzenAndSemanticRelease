@@ -1,0 +1,46 @@
+name: Versioning
+
+on:
+  push:
+    branches:
+      - feat/**
+      - develop
+      - main
+
+jobs:
+  versioning:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.x'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install commitizen
+      - name: Get development version
+        id: get_dev_version
+        if: ${{github.ref == 'refs/heads/feat/**'}}
+        run: |
+          dev_version=$(awk -F "=" '/^version/ {gsub(/[ \x09\x0d\x0a]+/, "", $2); print $2}' pyproject.toml)
+          dev_release=${dev_version#*-dev}
+          dev_release=$((dev_release + 1))
+      - name: Bump version and create tag
+        run: |
+          if [[ ${{ github.ref }} == 'refs/heads/develop' ]]; then
+            cz bump --changelog --yes --prerelease rc"
+          elif [[ ${{ github.ref }} == 'refs/heads/main' ]]; then
+            cz bump --changelog --yes
+          else
+            cz bump --changelog --yes --devrelease dev_release
+          fi
+
+      - name: Push changes and tags
+        run: |
+          git push --follow-tags
