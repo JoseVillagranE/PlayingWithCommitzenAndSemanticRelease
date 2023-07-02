@@ -1,3 +1,16 @@
+## 0.10.0-dev1 (2023-07-02)
+
+### Feat
+
+- add versioning.yaml
+
+### Fix
+
+- modify githuh.ref variable
+- delete keys parentheses on versioning.yaml
+- github.ref on versioning.yaml
+- versioning.yaml
+
 ## 0.9.0 (2023-07-02)
 
 ## 0.9.0-rc0 (2023-07-02)
