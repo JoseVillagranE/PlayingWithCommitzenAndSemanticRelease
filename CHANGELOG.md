@@ -1,3 +1,9 @@
+## 0.9.0-dev1 (2023-07-02)
+
+### Feat
+
+- add upload just one tag print message
+
 ## 0.8.0 (2023-07-01)
 
 ## 0.8.0-rc1 (2023-07-01)
