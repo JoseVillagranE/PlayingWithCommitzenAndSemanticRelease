@@ -33,6 +33,7 @@ jobs:
           dev_release=${dev_version#*-dev}
           echo dev_release : ${dev_release}
           dev_release=$((dev_release + 1))
+          echo "::set-output name=dev_release::$dev_release"
       - name: Bump version and create tag
         run: |
           if [[ ${{github.ref}} == 'refs/heads/develop' ]]; then
@@ -40,7 +41,8 @@ jobs:
           elif [[ ${{github.ref}} == 'refs/heads/main' ]]; then
             cz bump --changelog --yes
           else
-            dev_release=${{ steps.get_dev_version.dev_release}}
+            dev_release=${{ steps.get_dev_version..outputs.dev_release}}
+            echo dev_release : ${dev_release}
             cz bump --changelog --yes --devrelease $dev_release
           fi
 
