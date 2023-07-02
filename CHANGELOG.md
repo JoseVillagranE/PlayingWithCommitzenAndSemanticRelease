@@ -1,3 +1,23 @@
+## 0.8.0-rc1 (2023-07-01)
+
+### Feat
+
+- sync setup.py and __version__.py
+
+## 0.8.0-rc0 (2023-07-01)
+
+## 0.8.0-dev2 (2023-07-01)
+
+### Feat
+
+- add test increment dev release
+
+## 0.8.0-dev1 (2023-07-01)
+
+### Feat
+
+- add sandbox test print
+
 ## 0.7.0 (2023-07-01)
 
 ## 0.7.0-rc0 (2023-07-01)
