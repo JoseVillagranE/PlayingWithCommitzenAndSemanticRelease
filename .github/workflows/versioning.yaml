@@ -28,10 +28,9 @@ jobs:
         id: get_dev_version
         if: ${{github.ref}} == 'refs/heads/feat/**'
         run: |
-          dev_version=$(awk -F "=" '/^version/ && !/^version_files/ && !/^version_scheme/ {gsub(/[ \x09\x0d\x0a]+/, "", $2); print $2}' pyproject.toml)
+          dev_version=$(awk -F "=" '/^version/ && !/^version_files/ && !/^version_scheme/ {gsub(/[ \x09\x0d\x0a]+/, "", $0); sub(/version = /, "", $0); gsub(/"/, "", $0); print $0}' pyproject.toml)
           echo dev_version : ${dev_version}
           dev_release=${dev_version#*-dev}
-          dev_release=${gsub(/"/, "", $0)} 
           echo dev_release : ${dev_release}
           dev_release=$((dev_release + 1))
       - name: Bump version and create tag
