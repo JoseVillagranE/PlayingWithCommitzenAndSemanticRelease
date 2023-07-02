@@ -37,13 +37,13 @@ jobs:
       - name: Bump version and create tag
         run: |
           if [[ ${{github.ref}} == 'refs/heads/develop' ]]; then
-            cz bump --yes --prerelease rc
+            cz bump --changelog --yes --prerelease rc
           elif [[ ${{github.ref}} == 'refs/heads/main' ]]; then
-            cz bump --yes
+            cz bump --changelog --yes
           else
             dev_release=${{ steps.get_dev_version.outputs.dev_release}}
             echo dev_release : ${dev_release}
-            cz bump --yes --devrelease $dev_release
+            cz bump --changelog --yes --devrelease $dev_release
           fi
 
       - name: Push changes and tags
