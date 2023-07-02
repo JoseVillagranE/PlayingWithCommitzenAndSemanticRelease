@@ -36,7 +36,7 @@ jobs:
       - name: Bump version and create tag
         run: |
           if [[ ${{github.ref}} == 'refs/heads/develop' ]]; then
-            cz bump --changelog --yes --prerelease rc"
+            cz bump --changelog --yes --prerelease rc
           elif [[ ${{github.ref}} == 'refs/heads/main' ]]; then
             cz bump --changelog --yes
           else
