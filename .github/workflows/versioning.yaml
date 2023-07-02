@@ -37,15 +37,21 @@ jobs:
       - name: Bump version and create tag
         run: |
           if [[ ${{github.ref}} == 'refs/heads/develop' ]]; then
-            cz bump --changelog --yes --prerelease rc
+            cz bump --yes --prerelease rc
           elif [[ ${{github.ref}} == 'refs/heads/main' ]]; then
-            cz bump --changelog --yes
+            cz bump --yes
           else
             dev_release=${{ steps.get_dev_version.outputs.dev_release}}
             echo dev_release : ${dev_release}
-            cz bump --changelog --yes --devrelease $dev_release
+            cz bump --yes --devrelease $dev_release
           fi
 
       - name: Push changes and tags
         run: |
-          git push --follow-tags
+          if [[ ${{github.ref}} == 'refs/heads/develop' || ${{github.ref}} == 'refs/heads/feat/**']]; then
+            git push
+          else
+            tag_name=$(awk -F "=" '/^version/ && !/^version_files/ && !/^version_scheme/ {gsub(/[ \x09\x0d\x0a]+/, "", $0); sub(/version = /, "", $0); gsub(/"/, "", $0); print $0}' pyproject.toml)
+            git push origin $tag_name
+            git push origin main
+          fi
