@@ -40,6 +40,7 @@ jobs:
           elif [[ ${{github.ref}} == 'refs/heads/main' ]]; then
             cz bump --changelog --yes
           else
+            dev_release=${{ steps.get_dev_version.dev_release}}
             cz bump --changelog --yes --devrelease $dev_release
           fi
 
