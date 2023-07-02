@@ -26,16 +26,16 @@ jobs:
           pip install commitizen
       - name: Get development version
         id: get_dev_version
-        if: github.ref == 'refs/heads/feat/**'
+        if: ${{github.ref}} == 'refs/heads/feat/**'
         run: |
           dev_version=$(awk -F "=" '/^version/ {gsub(/[ \x09\x0d\x0a]+/, "", $2); print $2}' pyproject.toml)
           dev_release=${dev_version#*-dev}
           dev_release=$((dev_release + 1))
       - name: Bump version and create tag
         run: |
-          if [[ $github.ref == 'refs/heads/develop' ]]; then
+          if [[ ${{github.ref}} == 'refs/heads/develop' ]]; then
             cz bump --changelog --yes --prerelease rc"
-          elif [[ $github.ref == 'refs/heads/main' ]]; then
+          elif [[ ${{github.ref}} == 'refs/heads/main' ]]; then
             cz bump --changelog --yes
           else
             cz bump --changelog --yes --devrelease dev_release
