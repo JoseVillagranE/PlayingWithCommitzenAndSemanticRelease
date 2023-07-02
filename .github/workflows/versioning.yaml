@@ -40,7 +40,7 @@ jobs:
           elif [[ ${{github.ref}} == 'refs/heads/main' ]]; then
             cz bump --changelog --yes
           else
-            cz bump --changelog --yes --devrelease ${dev_release}
+            cz bump --changelog --yes --devrelease $dev_release
           fi
 
       - name: Push changes and tags
