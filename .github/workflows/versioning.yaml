@@ -26,7 +26,7 @@ jobs:
           pip install commitizen
       - name: Get development version
         id: get_dev_version
-        if: [[ $github.ref == 'refs/heads/feat/**' ]]
+        if: github.ref == 'refs/heads/feat/**'
         run: |
           dev_version=$(awk -F "=" '/^version/ {gsub(/[ \x09\x0d\x0a]+/, "", $2); print $2}' pyproject.toml)
           dev_release=${dev_version#*-dev}
